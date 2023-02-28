@@ -41,8 +41,8 @@ class blogController {
         // create blog
     static async createBlog(req, res) {
         try {
-            const { title, content, author } = req.body;
-            const newBlog = await Blog.create({ title, content, author });
+            const { title, content, author, imageUrl } = req.body;
+            const newBlog = await Blog.create({ title, content, author, imageUrl });
             res.status(201).json({
                 message: "New blog created successfully",
                 data: newBlog
