@@ -13,10 +13,13 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // imageUrl: {
-    //     type: String,
-    //     required: true,
-    // },
+    imageUrl: {
+        type: String,
+        required: true,
+    },
+    comments: {
+        type: Array,
+    },
     createdAt: {
         type: Date,
         default: Date.now

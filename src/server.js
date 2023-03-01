@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import allRoutes from "./routes/allRoutes.js";
 
+
 mongoose.set('strictQuery', false);
 
 

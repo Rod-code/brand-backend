@@ -1,6 +1,8 @@
 import Blog from "../model/blog.js";
-
+import cloudinary from 'cloudinary'
+import dotenv from 'dotenv'
 import errorFunc from "../utils/errorFunc.js";
+
 
 class blogController {
 
@@ -40,17 +42,31 @@ class blogController {
         }
         // create blog
     static async createBlog(req, res) {
+        dotenv.config();
+        cloudinary.config({
+            cloud_name: `${process.env.CLOUD_NAME}`,
+            api_key: `${process.env.API_KEY}`,
+            api_secret: `${process.env.API_SECRET}`,
+        });
         try {
-            const { title, content, author, imageUrl } = req.body;
-            const newBlog = await Blog.create({ title, content, author, imageUrl });
-            res.status(201).json({
-                message: "New blog created successfully",
-                data: newBlog
+            cloudinary.uploader.upload(req.file.path, async(result, err) => {
+                if (!result) {
+                    return errorFunc(res, 500, err);
+                }
+                const { title, content, author } = req.body;
+                console.log(result);
+                const newBlog = await Blog.create({ title, content, author, imageUrl: result.url });
+                // console.log(newBlog);
+                res.status(201).json({
+                    message: "New blog created successfully",
+                    data: newBlog
+                })
             });
         } catch (error) {
-            const messageContent = error.message;
-            const status = 500;
-            errorFunc(res, messageContent, status);
+            // const messageContent = error.message;
+            // const status = 500;
+            // errorFunc(res, messageContent, status);
+            console.log(error);
         }
     }
 

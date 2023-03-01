@@ -1,6 +1,6 @@
 import express from 'express';
 import queryController from '../controllers/queryController.js';
-import verifyAdmin from '../middleware/verifyIsAdmin.js';
+import verifyAdmin from '../middleware/verifyAdmin.js';
 
 const router = express.Router();
 
