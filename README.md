@@ -1,6 +1,4 @@
-# CRUD OPERATIONS - API Building
+# Brand -Backend - API 
 
-This is a basic project with CRUD (Create, Read, Update, Delete) operations
-
-#### Cloning the Project
+CRUD Operations
 
