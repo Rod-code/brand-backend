@@ -40,3 +40,7 @@ Promise.all([con(), startServer()])
         console.log(`MongoDB connected and server listening at http://${host}:${port}`);
     })
     .catch((err) => console.log(err))
+
+app.get('/', (req, res) => {
+    res.send('Hey this is my API running 🥳')
+})
