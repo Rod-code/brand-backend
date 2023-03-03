@@ -1,9 +1,13 @@
-// import express from 'express'
-//  import comment from '../controllers/commentController.js';
+import express from 'express'
+import comment from '../controllers/commentController.js';
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.post('/:id', comment.commentController)
-// router.get('/', )
+router.post('/:id', comment.createComment)
+router.post('/', (req, res) => res.status(400).json({
 
-// export default router
+    message: "Comment on a blog"
+
+}))
+
+export default router
