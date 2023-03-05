@@ -19,7 +19,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-
+app.get("/", (req, res) => {
+    res.status(200).send(`<h1>welcome to my backend<h1>`)
+})
 app.use("/api/v1", allRoutes);
 
 // define some variables
