@@ -13,8 +13,8 @@ router.use("/blogs", blogRoute)
 router.use("/signup", signupRoute)
 router.use("/login", loginRoute)
 router.use("/queries", queryRoute)
-router.use('/comments', commentRoute)
-router.use('/logout', logout)
+router.use("/comments", commentRoute)
+router.use("/logout", logout)
 
 
 router.use((req, res) => {
