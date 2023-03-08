@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 const verifyAdmin = async(req, res, next) => {
 
+
     const authHeader = req.headers.authorization;
 
 

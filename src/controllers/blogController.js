@@ -10,6 +10,7 @@ class blogController {
         try {
             const blogs = await Blog.find();
             res.status(200).json({
+                message: 'Here are all the blogs',
                 data: blogs
             });
         } catch (error) {
@@ -30,6 +31,7 @@ class blogController {
                     });
                 } else {
                     return res.status(200).json({
+                        message: 'Your Blog',
                         data: blog
                     });
                 }

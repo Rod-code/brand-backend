@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-
+import swaggerDocs from '../document/swagger.js';
 import mongoose from "mongoose";
 import app from "./app.js"
 
@@ -14,9 +14,10 @@ const host = process.env.HOST;
 
 // instance to listen to our server
 const startServer = () => app.listen(port);
-
+swaggerDocs(app, port);
 Promise.all([startServer()])
     .then(() => {
-        console.log(`MongoDB connected and server listening at http://${host}:${port}`);
+        console.log(`server listening at http://${host}:${port}`);
+
     })
     .catch((err) => console.log(err))

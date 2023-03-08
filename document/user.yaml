@@ -1,0 +1,126 @@
+paths:
+  # Signup
+  /api/v1/signup:
+    post:
+      summary: Sign up
+      tags: [User Endpoints]
+      description: create a new user account
+      requestBody:
+        # description: field are required
+        # required: true
+         content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                fullname: {
+                    type: "string",
+                    description: "names of the user",
+                    example: "username"
+                  },
+                email: {
+                  type: "string",
+                  description: "The email of the user",
+                  example: "johndoe@gmail.com"
+                },
+                
+                password: {
+                  type: "string",
+                  description: "The password of the user",
+                  example: "password123"
+                },
+                isAdmin: {
+                  type: boolean,
+                  default: true,
+                }
+                # confirmPassword: {
+                #     type: "string",
+                #     description: "The password of the user",
+                #     example: "password"
+                #   }
+              },
+              required: ["email", "username", "password", "isAdmin"]
+            }
+          }
+         }
+      responses:
+        201:
+          description: "New User created successfully"
+        # 400:
+        #   description: Both passwords must match
+        403:
+          description: Email already exists
+  # Login 
+  /api/v1/login:
+    post:
+      summary: Login
+      tags: [User Endpoints]
+      description: login here
+      requestBody:
+        # description: fields are required
+        # required: true
+         content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                email: {
+                  type: "string",
+                  description: "The email of the user",
+                  example: "heistesting@gmail.com"
+                },
+                password: {
+                  type: "string",
+                  description: "The password of the user",
+                  example: "password"
+                }
+                
+              },
+              required: ["email","password"]
+            }
+          }
+         }
+      responses:
+        201:
+          description: Login successful
+        401:
+          description: Invalid credentials
+
+# schemas
+# components:
+  schemas:
+    Signup:
+      type: object
+      required:
+        - email
+        - fullname
+        - password
+        - isAdmin
+      properties:
+        email:
+          type: string
+          default: johndoe@gmail.com
+        fullname:
+          type: string
+          default: John Doe
+        password:
+          type: string
+          default: password
+        # confirmPassword:
+        #   type: string
+        #   default: thePassword
+        isAdmin:
+          type: boolean
+          default: true
+    Login:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          default: johndoe@gmail.com
+        password:
+          type: string
+          default: password

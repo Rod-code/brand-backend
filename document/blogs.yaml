@@ -1,0 +1,86 @@
+paths:
+  # get all blogs
+  /api/v1/blogs:
+    get:
+      summary: Get all blogs
+      tags: [Blog Endpoints]
+      description: Returns all blogs from our database
+      responses:
+        200:
+          description: Here are all the blogs
+
+  # get a one blog blog
+  /api/v1/blogs/{blogId}:
+    get:
+      summary: Get a specific blog
+      tags: [Blog Endpoints]
+      parameters:
+        - name: blogId
+          in: path
+          description: provide the blog's ID
+          required: true
+      description: Returns a specified blog from our database
+      responses:
+        200:
+          description: 'Your blog'
+        404:
+          description: Blog with id ${id} was not found
+
+    #delete a blog 
+    /api/vi/blogs/{blogId}/:
+    delete:
+      security: [{ jwt: [] }]
+      summary: Delete a blog
+      tags: [Blog Endpoints]
+      parameters:
+        - name: blogId
+          in: path
+          description:  blog's ID
+          required: true
+      description: Delete a specified blog
+      responses:
+        200:
+          description: Blog deleted successfully
+        401:
+          description: Blog with id ${id} was not found
+
+        
+
+
+  components:
+  schemas:
+    CreateBlog:
+      type: object
+      required:
+        - title
+        - author
+        - body
+        - imageUrl
+      properties:
+        title:
+          type: string
+          default: Flutter
+        author:
+          type: string
+          default: Jane Doe
+        content:
+          type: string
+          default: Flutter is a mobile framework....
+        imageUrl:
+          type: file
+    UpdateBlog:
+      type: object
+      required:
+      properties:
+        title:
+          type: string
+          default: Flutter
+        author:
+          type: string
+          default: Jane Doe
+        content:
+          type: string
+          default: Flutter is a mobile framework....
+       
+        imageUrl:
+          type: file

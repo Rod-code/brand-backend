@@ -6,6 +6,7 @@ import queryRoute from "./queryRoute.js";
 import commentRoute from "./commentRoute.js";
 import logout from "./logoutRoute.js"
 
+
 const router = express.Router()
 
 // all routes
@@ -22,5 +23,9 @@ router.use((req, res) => {
         message: "Page Not Found"
     });
 });
+
+
+
+
 
 export default router

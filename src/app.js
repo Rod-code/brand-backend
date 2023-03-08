@@ -7,6 +7,9 @@ import allRoutes from "./routes/allRoutes.js";
 
 
 
+
+
+
 mongoose.set('strictQuery', false);
 
 dotenv.config();
@@ -38,5 +41,7 @@ if (con) {
     console.log('Database has been connected')
 };
 app.use("/api/v1", allRoutes);
+
+
 
 export default app
