@@ -45,42 +45,145 @@ paths:
           description: Blog with id ${id} was not found
 
         
+ # create a new blog
+  /api/v1/blogs/:
+    post:
+      # security: [{ jwt: [] }]
+      summary: Create a new blog
+      tags: [Blog Endpoints]
+      requestBody:
+        #  description: please fill all required fields
+       content: {
+          "application/json": {
+            schema: {
+            type: "object",
+              properties: {
+              title: {
+                type: "string",
+              description: "title",
+              example: "flutter"
+              },
+              
+              author: {
+                type: "string",
+              description: "author",
+              example: "ishimwe rodrigue"
+              },
+              
+              imageUrl: {
+                 type: "file",
+              description: "imageUrl"
+              },
+              
+              content: {
+              type: "string",
+              description: "content",
+              example: "Flutter is a mobile framework....",
+              }
+              },
+              
+              required: ["title", author, "imageUrl", "content"],
+        
+              
+            }
+          }
+       }
+       responses:
+            201:
+             description: New blog created successfully
+        # 500:
+        #   description: Server error 1.0
 
+  # Update a specific blog
+  /api/v1/blogs/{blogID}/:
+    patch:
+      # security: [{ jwt: [] }]
+      summary: Update a blog
+      tags: [Blog Endpoints]
+      parameters:
+        - name: blogID
+          in: path
+          description: provide the blog's ID
+          required: true
+      requestBody:
+        # description: please fill all required fields
+       content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                title: {
+                   type: "string",
+                  description: "title",
+                  example: "flutter"
+                },
+                 
 
-  components:
-  schemas:
-    CreateBlog:
-      type: object
-      required:
-        - title
-        - author
-        - body
-        - imageUrl
-      properties:
-        title:
-          type: string
-          default: Flutter
-        author:
-          type: string
-          default: Jane Doe
-        content:
-          type: string
-          default: Flutter is a mobile framework....
-        imageUrl:
-          type: file
-    UpdateBlog:
-      type: object
-      required:
-      properties:
-        title:
-          type: string
-          default: Flutter
-        author:
-          type: string
-          default: Jane Doe
-        content:
-          type: string
-          default: Flutter is a mobile framework....
+                  author: {
+                    type: "string",
+                  description: "author",
+                  example: "ishimwe rodrigue"
+                  },
+                  
+
+                  imageUrl: {
+                  type: "file",
+                  description: "imageUrl"
+                  },
+                 
+                
+                   content: {
+                   type: "string",
+                  description: "content",
+                  example: "Flutter is a mobile framework...."
+                   },
+              },
+                     
+              required: ["title", author,  "imageUrl", "content"],
+              
+            }
+         },
+       }
+      responses:
+        200:
+          description: Blog Updated Successfully
+        404:
+          description: Blog with id ${id} was not found
+
+  # components:
+  # schemas:
+    # CreateBlog:
+    #   type: object
+    #   required:
+    #     - title
+    #     - author
+    #     - body
+    #     - imageUrl
+    #   properties:
+    #     title:
+    #       type: string
+    #       default: Flutter
+    #     author:
+    #       type: string
+    #       default: Jane Doe
+    #     content:
+    #       type: string
+    #       default: Flutter is a mobile framework....
+    #     imageUrl:
+    #       type: file
+    # UpdateBlog:
+    #   type: object
+    #   required:
+    #   properties:
+    #     title:
+    #       type: string
+    #       default: Flutter
+    #     author:
+    #       type: string
+    #       default: Jane Doe
+    #     content:
+    #       type: string
+    #       default: Flutter is a mobile framework....
        
-        imageUrl:
-          type: file
+    #     imageUrl:
+    #       type: file

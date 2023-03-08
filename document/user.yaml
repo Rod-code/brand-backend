@@ -15,18 +15,18 @@ paths:
               properties: {
                 fullname: {
                     type: "string",
-                    description: "names of the user",
-                    example: "username"
+                    description: "fullname of the user",
+                    example: "ishimwe rodrigue"
                   },
                 email: {
                   type: "string",
-                  description: "The email of the user",
-                  example: "johndoe@gmail.com"
+                  description: "email of the user",
+                  example: "ishimwerodrigue@gmail.com"
                 },
                 
                 password: {
                   type: "string",
-                  description: "The password of the user",
+                  description: "password of the user",
                   example: "password123"
                 },
                 isAdmin: {
@@ -66,13 +66,13 @@ paths:
               properties: {
                 email: {
                   type: "string",
-                  description: "The email of the user",
-                  example: "heistesting@gmail.com"
+                  description: "email of the user",
+                  example: "ishimwerodrigue@gmail.com"
                 },
                 password: {
                   type: "string",
-                  description: "The password of the user",
-                  example: "password"
+                  description: "password of the user",
+                  example: "password123"
                 }
                 
               },
@@ -86,41 +86,41 @@ paths:
         401:
           description: Invalid credentials
 
-# schemas
-# components:
-  schemas:
-    Signup:
-      type: object
-      required:
-        - email
-        - fullname
-        - password
-        - isAdmin
-      properties:
-        email:
-          type: string
-          default: johndoe@gmail.com
-        fullname:
-          type: string
-          default: John Doe
-        password:
-          type: string
-          default: password
-        # confirmPassword:
-        #   type: string
-        #   default: thePassword
-        isAdmin:
-          type: boolean
-          default: true
-    Login:
-      type: object
-      required:
-        - email
-        - password
-      properties:
-        email:
-          type: string
-          default: johndoe@gmail.com
-        password:
-          type: string
-          default: password
+# # schemas
+# # components:
+#   schemas:
+#     Signup:
+#       type: object
+#       required:
+#         - email
+#         - fullname
+#         - password
+#         - isAdmin
+#       properties:
+#         email:
+#           type: string
+#           default: johndoe@gmail.com
+#         fullname:
+#           type: string
+#           default: John Doe
+#         password:
+#           type: string
+#           default: password
+#         # confirmPassword:
+#         #   type: string
+#         #   default: thePassword
+#         isAdmin:
+#           type: boolean
+#           default: true
+#     Login:
+#       type: object
+#       required:
+#         - email
+#         - password
+#       properties:
+#         email:
+#           type: string
+#           default: johndoe@gmail.com
+#         password:
+#           type: string
+#           default: password
