@@ -51,10 +51,15 @@ paths:
       # security: [{ jwt: [] }]
       summary: Create a new blog
       tags: [Blog Endpoints]
+      parameters:
+        
+          in: path
+          description: provide the blog's ID
+          required: true
       requestBody:
         #  description: please fill all required fields
        content: {
-          "application/json": {
+          "application/x-www-form-urlencoded": {
             schema: {
             type: "object",
               properties: {
@@ -108,7 +113,7 @@ paths:
       requestBody:
         # description: please fill all required fields
        content: {
-          "application/json": {
+          "application/x-www-form-urlencoded": {
             schema: {
               type: "object",
               properties: {

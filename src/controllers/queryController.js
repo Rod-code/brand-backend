@@ -26,6 +26,7 @@ class queryController {
                 });
             } else {
                 return res.status(200).json({
+                    message: "Message",
                     data: query
                 });
             }

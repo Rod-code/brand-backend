@@ -1,151 +1,96 @@
-# paths:
-#   # get all blogs
-#   /api/v1/queries:
-#     get:
-#       summary: Get all queries
-#       tags: [Blog Endpoints]
-#       description: Returns all blogs from our database
-#       responses:
-#         200:
-#           description: Here are all the blogs
+paths:
+  # get all queries
+  /api/v1/queries:
+    get:
+      security: [{ jwt: [] }]
+      summary: Get all queries
+      tags: [Query Endpoints]
+      description: Returns all Queries
+      responses:
+        200:
+          description: Here are all the queries
 
-#   # get a one blog blog
-#   /api/v1/blogs/{blogId}:
-#     get:
-#       summary: Get a specific blog
-#       tags: [Blog Endpoints]
-#       parameters:
-#         - name: blogId
-#           in: path
-#           description: provide the blog's ID
-#           required: true
-#       description: Returns a specified blog from our database
-#       responses:
-#         200:
-#           description: 'Your blog'
-#         404:
-#           description: Blog with id ${id} was not found
+  # get a one query
+  /api/v1/queries/{queryId}:
+    get:
+      summary: Get a specific query
+      tags: [Query Endpoints]
+      parameters:
+        - name: queryId
+          in: path
+          description: provide the query's ID
+          required: true
+      description: Returns a specified query
+      responses:
+        200:
+          description: 'Message'
+        404:
+          description: query with id ${id} was not found
 
-#     #delete a blog 
-#     /api/vi/blogs/{blogId}/:
-#     delete:
-#       security: [{ jwt: [] }]
-#       summary: Delete a blog
-#       tags: [Blog Endpoints]
-#       parameters:
-#         - name: blogId
-#           in: path
-#           description:  blog's ID
-#           required: true
-#       description: Delete a specified blog
-#       responses:
-#         200:
-#           description: Blog deleted successfully
-#         401:
-#           description: Blog with id ${id} was not found
+    #delete a query 
+    /api/vi/queries/{queryId}/:
+    delete:
+      security: [{ jwt: [] }]
+      summary: Delete a query
+      tags: [     Query Endpoints]
+      parameters:
+        - name: queryId
+          in: path
+          description:  query's ID
+          required: true
+      description: Delete a specified query
+      responses:
+        200:
+          description: Query deleted successfully
+        401:
+          description: Query with id ${id} was not found
 
         
-#  # create a new blog
-#   /api/v1blogs/:
-#     post:
-#       # security: [{ jwt: [] }]
-#       summary: Create a new blog
-#       tags: [Blog Endpoints]
-#       requestBody:
-#         #  description: please fill all required fields
-#        content: {
-#           "multipart/form-data": {
-#             schema: {
-#             type: "object",
-#               properties: {
-#               title: {
-#                 type: "string",
-#               description: "title",
-#               example: "flutter"
-#               },
-              
-#               author: {
-#                 type: "string",
-#               description: "author",
-#               example: "John Doe"
-#               },
-              
-#               imageUrl: {
-#                  type: "file",
-#               description: "imageUrl"
-#               },
-              
-#               content: {
-#               type: "string",
-#               description: "content",
-#               example: "Flutter is a mobile framework....",
-#               }
-#               },
-              
-#               required: ["title", author,  "imageUrl", "content"],
-        
-              
-#             }
-#           }
-#        }
-#        responses:
-#             201:
-#              description: New blog created successfully
-#         # 500:
-#         #   description: Server error 1.0
+ # create a new query
+  /api/v1/queries/:
+    post:
+      # security: [{ jwt: [] }]
+      summary: Create a new Query
+      tags: [Query Endpoints]
+      parameters:
 
-#   # Update a specific blog
-#   /api/v1/blogs/{blogID}/:
-#     patch:
-#       # security: [{ jwt: [] }]
-#       summary: Update a blog
-#       tags: [Blog Endpoints]
-#       parameters:
-#         - name: blogID
-#           in: path
-#           description: provide the blog's ID
-#           required: true
-#       requestBody:
-#         # description: please fill all required fields
-#        content: {
-#           "multipart/form-data": {
-#             schema: {
-#               type: "object",
-#               properties: {
-#                 title: {
-#                    type: "string",
-#                   description: "title",
-#                   example: "flutter"
-#                 },
-                 
-
-#                   author: {
-#                     type: "string",
-#                   description: "author",
-#                   example: "John Doe"
-#                   },
-                  
-
-#                   imageUrl: {
-#                   type: "file",
-#                   description: "imageUrl"
-#                   },
-                 
-                
-#                    content: {
-#                    type: "string",
-#                   description: "content",
-#                   example: "Flutter is a mobile framework...."
-#                    },
-#               },
-                     
-#               required: ["title", author,  "imageUrl", "content"],
+          in: path
+          description: provide the blog's ID
+      requestBody:
+        #  description: please fill all required fields
+       content: {
+          "application/json": {
+            schema: {
+            type: "object",
+              properties: {
+              fullname: {
+                type: "string",
+              description: "fullname",
+              example: "ishimwe rodrigue"
+              },
               
-#             }
-#          },
-#        }
-#       responses:
-#         200:
-#           description: Blog Updated Successfully
-#         404:
-#           description: Blog with id ${id} was not found
+              email: {
+                type: "string",
+              description: "email",
+              example: "ishimwerodrigue@gmail.com"
+              },
+              
+              content: {
+              type: "string",
+              description: "content",
+              example: "i want to build something....",
+              }
+              },
+              
+              required: ["fullname", email, "content"],
+         
+            }
+          }
+       }
+       responses:
+            201:
+             description: New Message sent successfully
+        # 500:
+        #   description: Server error 1.0
+
+ 
