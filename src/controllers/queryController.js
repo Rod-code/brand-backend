@@ -43,6 +43,7 @@ class queryController {
             const { fullname, email, content } = req.body;
             const newQuery = await Query.create({ fullname, email, content });
             res.status(201).json({
+                ok: true,
                 message: "Message sent successfully",
                 data: newQuery
             });

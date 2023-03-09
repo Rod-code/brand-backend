@@ -60,6 +60,7 @@ class blogController {
                 const newBlog = await Blog.create({ title, content, author, imageUrl: result.url });
                 // console.log(newBlog);
                 res.status(201).json({
+                    ok: true,
                     message: "New blog created successfully",
                     data: newBlog
                 })
