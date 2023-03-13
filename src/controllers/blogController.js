@@ -1,7 +1,11 @@
 import Blog from "../model/blog.js";
-import cloudinary from 'cloudinary'
-import dotenv from 'dotenv'
+// import cloudinary from 'cloudinary'
+// import dotenv from 'dotenv'
+// import express from 'express';
+import multer from 'multer';
+import { v2 as cloudinary } from 'cloudinary';
 import errorFunc from "../utils/errorFunc.js";
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
 
 
 class blogController {
@@ -44,20 +48,37 @@ class blogController {
         }
         // create blog
     static async createBlog(req, res) {
-        dotenv.config();
+        // dotenv.config();
         cloudinary.config({
             cloud_name: `${process.env.CLOUD_NAME}`,
             api_key: `${process.env.API_KEY}`,
             api_secret: `${process.env.API_SECRET}`,
         });
         try {
-            cloudinary.uploader.upload(req.file.path, async(result, err) => {
-                if (!result) {
-                    return errorFunc(res, 500, err);
+            const storage = new CloudinaryStorage({
+                cloudinary,
+                params: {
+                    folder: 'blogs-image',
+                    allowed_formats: ['jpg', 'png', 'jpeg']
                 }
-                const { title, content, author } = req.body;
-                console.log(result);
-                const newBlog = await Blog.create({ title, content, author, imageUrl: result.url });
+            });
+            const upload = multer({ storage }).single('image');
+            upload(req, res, async(err) => {
+                if (err) {
+                    return console.log(err)
+                }
+                const { title, author, content, imageUrl } = req.body
+                    // const blogs = await Blog.find();
+                    // const newBlog = await Blog.create({ title, author, content, imageUrl: req.file.path })
+                const newBlog = await Blog.create({ title, author, content, imageUrl })
+
+                // cloudinary.uploader.upload(req.file.path, async(result, err) => {
+                //     if (!result) {
+                //         return errorFunc(res, 500, err);
+                //     }
+                //     const { title, content, author } = req.body;
+                //     console.log(result);
+                //     const newBlog = await Blog.create({ title, content, author, imageUrl: result.url });
                 // console.log(newBlog);
                 res.status(201).json({
                     ok: true,

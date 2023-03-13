@@ -25,8 +25,11 @@ const loginController = async(req, res) => {
                 });
             } else {
                 // create and sign JWT token
-                const token = jwt.sign({ isAdmin: user.isAdmin }, process.env.SECRET, { expiresIn: "1d" })
-
+                const token = jwt.sign({ isAdmin: user.isAdmin }, process.env.SECRET, { expiresIn: "1d" }, secret)
+                    // res.cookie("token", token, {
+                    //     httpOnly: true,
+                    //     secure: true, // I must remember to set this to true in production
+                    // });
                 res.status(200).json({
                     message: 'Login successful',
                     data: {

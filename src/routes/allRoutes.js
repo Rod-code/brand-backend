@@ -4,7 +4,8 @@ import signupRoute from "./signupRoute.js"
 import loginRoute from "./loginRoute.js"
 import queryRoute from "./queryRoute.js";
 import commentRoute from "./commentRoute.js";
-import logout from "./logoutRoute.js"
+import logout from "./logoutRoute.js";
+import userRoute from "./userRoute.js";
 
 
 const router = express.Router()
@@ -16,6 +17,7 @@ router.use("/login", loginRoute)
 router.use("/queries", queryRoute)
 router.use("/comments", commentRoute)
 router.use("/logout", logout)
+router.use('/users', userRoute);
 
 
 router.use((req, res) => {
